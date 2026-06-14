@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>데이터 파이프라인 수작업 검수(Human-in-the-loop)의 필요성</title>
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; background: #f8f9fb; color: #1e293b; padding: 40px; margin: 0; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header { margin-bottom: 30px; border-bottom: 2px solid #e2e8f0; padding-bottom: 20px; }
+        .header h1 { font-size: 24px; margin: 0 0 10px 0; color: #0f172a; }
+        .header p { margin: 0; color: #64748b; font-size: 15px; }
+        .warning-box { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 15px 20px; border-radius: 4px; margin-bottom: 30px; }
+        .warning-box h3 { margin: 0 0 5px 0; color: #b45309; font-size: 16px; }
+        .warning-box p { margin: 0; color: #92400e; font-size: 14px; }
+        .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .panel { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        .panel-header { background: #f1f5f9; padding: 15px 20px; border-bottom: 1px solid #e2e8f0; font-weight: bold; font-size: 16px; }
+        .panel-header.red { color: #dc2626; }
+        .panel-header.green { color: #16a34a; }
+        .panel-content { padding: 20px; font-family: 'Consolas', monospace; font-size: 13px; line-height: 1.6; white-space: pre-wrap; height: 400px; overflow-y: auto; }
+        .error-highlight { background: #fecaca; color: #991b1b; padding: 2px 4px; border-radius: 3px; }
+        .success-highlight { background: #bbf7d0; color: #166534; padding: 2px 4px; border-radius: 3px; }
+        .note { margin-top: 30px; text-align: center; color: #64748b; font-size: 14px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>[예시] 데이터 전처리 리스크: 왜 100% 자동화가 불가능한가?</h1>
+            <p>HWP 문서 변환 시 표/이미지 유실 문제와 행정실 수동 검수(Human-in-the-loop)의 필수성 시각화</p>
+        </div>
+
+        <div class="warning-box">
+            <h3>⚠️ 주의: AI 환각의 가장 큰 원인은 '깨진 원본 데이터'입니다.</h3>
+            <p>학교의 주요 정보가 담긴 한글(HWP) 문서의 '표(Table)'는 자동 추출 시 텍스트가 뒤섞이거나 유실됩니다. 이 상태로 AI에 주입하면 전혀 엉뚱한 답변을 생성하게 되므로, 반드시 <strong>LLM 정제 후 사람(담당자)의 수작업 검수/보완</strong> 단계가 필요합니다.</p>
+        </div>
+
+        <div class="compare-grid">
+            <!-- Bad Example -->
+            <div class="panel">
+                <div class="panel-header red">
+                    [Before] HWP → 자동 텍스트 추출 (표 구조 파괴)
+                </div>
+                <div class="panel-content">글로벌경영학과 2026학년도 교육과정
+과목명 학점 이수구분 비고
+<span class="error-highlight">국제마케팅론 3 전공필수 경영전략 3 전공선택 회계원리 3</span>
+<span class="error-highlight">전공선택 1학기 개설 무역실무 3 전공필수 영어강의</span>
+
+장학금 안내
+구분 기준 금액
+<span class="error-highlight">성적우수 평점 4.0 이상 전액 글로벌인재 토익 800 이상 50%</span>
+
+※ 위 정보는 변경될 수 있습니다.
+[그림 1: 현장실습 사진 - 추출 실패(이미지 유실)]</div>
+            </div>
+
+            <!-- Good Example -->
+            <div class="panel">
+                <div class="panel-header green">
+                    [After] LLM 1차 정제 + 행정실 수동 검수 (Markdown화)
+                </div>
+                <div class="panel-content"># 글로벌경영학과 2026학년도 교육과정
+
+| 과목명 | 학점 | 이수구분 | 비고 |
+|---|---|---|---|
+| <span class="success-highlight">국제마케팅론</span> | 3 | 전공필수 | |
+| <span class="success-highlight">경영전략</span> | 3 | 전공선택 | |
+| <span class="success-highlight">회계원리</span> | 3 | 전공선택 | 1학기 개설 |
+| <span class="success-highlight">국제무역실무</span> | 3 | 전공필수 | 영어강의 |
+
+# 장학금 안내
+| 구분 | 기준 | 금액 |
+|---|---|---|
+| 성적우수 | 평점 4.0 이상 | 전액 |
+| 글로벌인재 | 토익 800 이상 | 50% |
+
+※ 주의: 장학금 정보는 변동 가능성이 높으므로 챗봇 응답 시 학생처 연락처를 반드시 병기할 것. (수동 지침 추가됨)</div>
+            </div>
+        </div>
+
+        <div class="note">
+            결론: 이 "수작업 보완 단계"를 무시하고 100% 자동화를 시도하면 시스템은 반드시 실패합니다.
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{
+  "request_id": "req-987654321",
+  "timestamp": "2026-06-11T03:30:00Z",
+  "endpoint": "/api/v1/chat/completions",
+  "model": "qwen-2.5-14b-local",
+  
+  "security_flags": {
+    "semantic_filter_passed": true,
+    "pii_redaction_applied": false,
+    "similarity_score": 0.89,
+    "language_detected": "ko"
+  },
+
+  "payload": {
+    "temperature": 0.1,
+    "top_p": 0.9,
+    "max_tokens": 512,
+    "messages": [
+      {
+        "role": "system",
+        "content": "[Role]\n당신은 신한대학교 국제대학 글로벌경영학과의 공식 'AI 학습 어시스턴트'입니다.\n\n[Constraint - 절대 규칙]\n1. 추론 금지: <Context>에 없는 정보 지어내기 금지\n2. 정보 부재 시 대응: \"정보가 없습니다. 행정실 문의 요망\"\n3. 언어 제약: 한국어/영어/중국어 외 언어는 한국어로 \"지원 불가\" 응답\n4. 민감 행정 업무 차단: 입학, 장학금, 비자 등 안내 금지. 무조건 \"국제처 문의 요망\"\n\n[Context - RAG 검색 결과]\n[문서 1: global_business_refined.md]\n- 글로벌경영학과 전공필수 과목: 경영학원론, 국제마케팅론, 무역실무(영어강의)\n- 전공선택 과목: 회계원리, 경제학개론, 비즈니스중국어"
+      },
+      {
+        "role": "user",
+        "content": "무역실무 과목은 영어로 진행되나요?"
+      }
+    ]
+  }
+}

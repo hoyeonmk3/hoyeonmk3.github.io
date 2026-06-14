@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>AI교수학습센터 - 리스크 방어형 시스템 아키텍처</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; background: #f1f5f9; margin: 0; padding: 40px; color: #1e293b; }
+        .container { max-width: 1100px; margin: 0 auto; }
+        .header { text-align: center; margin-bottom: 40px; }
+        .header h1 { margin: 0 0 10px 0; color: #0f172a; font-size: 28px; }
+        .header p { margin: 0; color: #64748b; font-size: 16px; }
+        .offline-note { text-align: center; margin-bottom: 20px; padding: 10px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; font-size: 12px; color: #166534; }
+
+        .flow-card { background: #fff; border-radius: 12px; padding: 30px; margin-bottom: 40px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        .flow-card h2 { margin: 0 0 10px 0; color: #1e40af; font-size: 20px; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; }
+        .flow-desc { color: #475569; font-size: 14px; margin-bottom: 20px; line-height: 1.5; }
+        .flow-img { text-align: center; margin-top: 20px; }
+        .flow-img img { max-width: 100%; height: auto; border: 1px solid #e2e8f0; border-radius: 8px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>핵심 방어 로직 알고리즘 흐름도</h1>
+        <p>환각(Hallucination) 방지 및 비용 최적화를 위한 시스템 아키텍처</p>
+    </div>
+    <div class="offline-note">✅ 이 페이지는 오프라인 환경에서도 정상 표시됩니다. (PNG 이미지 기반)</div>
+
+    <!-- Flow 1 -->
+    <div class="flow-card">
+        <h2>1. RAG 챗봇: 환각 방어 및 예외 처리 (Fallback) 로직</h2>
+        <p class="flow-desc">민감 키워드(입학/장학금/비자/등록금/성적) 차단, 유사도 미달 시 답변 거부, 불확실성 표현 필터링 등 3단계 방어망을 구축합니다. 모든 차단/응답은 로깅되어 운영 품질 개선에 활용됩니다.</p>
+        <div class="flow-img">
+            <img src="flowcharts/flow_01_rag_fallback_logic.png" alt="RAG 챗봇 환각 방어 로직 흐름도">
+        </div>
+    </div>
+
+    <!-- Flow 2 -->
+    <div class="flow-card">
+        <h2>2. 데이터 파이프라인: HWP 전처리 및 수작업 검수 (Human-in-the-loop)</h2>
+        <p class="flow-desc">HWP의 표/이미지 유실을 방지하기 위해 자동 품질 검사(원본 대비 텍스트 30% 이상 감소 시 경고)를 거친 후, 행정실이 원본 HWP를 대조하여 검수합니다. 검수 미완료 시 반려/재작업 루프를 통해 품질을 확보합니다.</p>
+        <div class="flow-img">
+            <img src="flowcharts/flow_02_hwp_data_pipeline.png" alt="HWP 데이터 파이프라인 흐름도">
+        </div>
+    </div>
+
+    <!-- Flow 3 -->
+    <div class="flow-card">
+        <h2>3. 포탈 정적 빌드: 비용 최적화 아키텍처</h2>
+        <p class="flow-desc">실시간 API 호출을 피하기 위해, 데이터 변경 시에만 페이지를 재생성(SSG)합니다. 빌드 파이프라인과 API 호출 비용은 별도 발생하며, 번역 오류 발생 시 기존 페이지를 유지하는 안전장치를 포함합니다.</p>
+        <div class="flow-img">
+            <img src="flowcharts/flow_03_zero_cost_portal.png" alt="포탈 정적 빌드 아키텍처 흐름도">
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

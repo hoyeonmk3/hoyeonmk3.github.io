@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>AI교수학습센터 프로젝트 — 프레젠테이션 자료 목차</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Sans KR', sans-serif; background: #f1f5f9; color: #1e293b; min-height: 100vh; padding: 48px; }
+        .container { max-width: 900px; margin: 0 auto; }
+        .header { text-align: center; margin-bottom: 48px; }
+        .header h1 { font-size: 32px; font-weight: 900; color: #0f172a; margin-bottom: 8px; }
+        .header p { font-size: 16px; color: #64748b; }
+        .header .badge { display: inline-block; background: #eef2ff; border: 1px solid #c7d2fe; border-radius: 24px; padding: 4px 16px; font-size: 13px; color: #4338ca; margin-bottom: 16px; }
+
+        .section { margin-bottom: 40px; }
+        .section h2 { font-size: 20px; font-weight: 700; color: #1e40af; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 16px; }
+        .section .desc { font-size: 14px; color: #64748b; margin-bottom: 16px; }
+
+        .card-list { display: flex; flex-direction: column; gap: 12px; }
+        .card { display: flex; align-items: center; gap: 16px; background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px 24px; text-decoration: none; color: inherit; transition: box-shadow 0.2s, border-color 0.2s; }
+        .card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-color: #93c5fd; }
+        .card .icon { font-size: 28px; flex-shrink: 0; width: 48px; text-align: center; }
+        .card .info { flex: 1; }
+        .card .info .title { font-size: 16px; font-weight: 600; color: #0f172a; margin-bottom: 4px; }
+        .card .info .sub { font-size: 13px; color: #64748b; }
+        .card .arrow { color: #94a3b8; font-size: 18px; }
+        .card.new::after { content: 'NEW'; position: absolute; right: 20px; top: 12px; background: #22c55e; color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: 700; }
+        .card { position: relative; }
+
+        .divider { border: none; border-top: 1px dashed #cbd5e1; margin: 40px 0; }
+
+        .timeline-bar { display: flex; justify-content: center; gap: 0; margin-bottom: 40px; }
+        .timeline-step { text-align: center; padding: 12px 24px; font-size: 13px; position: relative; }
+        .timeline-step .phase { font-weight: 700; color: #4338ca; margin-bottom: 2px; }
+        .timeline-step .date { color: #64748b; font-size: 12px; }
+        .timeline-step.active { background: #eef2ff; border-radius: 8px; border: 1px solid #c7d2fe; }
+        .timeline-step.future { opacity: 0.6; }
+        .timeline-arrow { display: flex; align-items: center; color: #94a3b8; font-size: 20px; padding: 0 8px; }
+
+        .footer { text-align: center; margin-top: 48px; color: #94a3b8; font-size: 13px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="badge">AI교수학습센터 · 보직자 보고용</div>
+            <h1>프레젠테이션 자료 목차</h1>
+            <p>아래 항목을 클릭하면 해당 데모/문서가 열립니다.</p>
+        </div>
+
+        <!-- 타임라인 -->
+        <div class="timeline-bar">
+            <div class="timeline-step active">
+                <div class="phase">▶ Phase 1 (현재)</div>
+                <div class="date">2026.07~08 · Gemini API 검증</div>
+            </div>
+            <div class="timeline-arrow">→</div>
+            <div class="timeline-step future">
+                <div class="phase">Phase 2</div>
+                <div class="date">2026.09~ · 로컬 LLM 전환</div>
+            </div>
+            <div class="timeline-arrow">→</div>
+            <div class="timeline-step future">
+                <div class="phase">Phase 3</div>
+                <div class="date">2026.11~ · 8개 학과 확대</div>
+            </div>
+        </div>
+
+        <!-- 섹션 1: 프로젝트 개요 -->
+        <div class="section">
+            <h2>📌 프로젝트 개요</h2>
+            <p class="desc">프로젝트 전체 구조와 기술 아키텍처를 한눈에 파악할 수 있는 자료입니다.</p>
+            <div class="card-list">
+                <a class="card" href="../project_overview.html">
+                    <div class="icon">📋</div>
+                    <div class="info">
+                        <div class="title">프로젝트 제안 요약</div>
+                        <div class="sub">3개 프로젝트(챗봇, 포탈, 데이터 파이프라인) 카드형 개요</div>
+                    </div>
+                    <div class="arrow">→</div>
+                </a>
+                <a class="card" href="../architecture_flows.html">
+                    <div class="icon">🔧</div>
+                    <div class="info">
+                        <div class="title">기술 아키텍처 흐름도 (PNG 이미지)</div>
+                        <div class="sub">RAG 방어 로직, HWP 파이프라인, 포탈 빌드 — 오프라인에서도 정상 표시</div>
+                    </div>
+                    <div class="arrow">→</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- 섹션 2: 챗봇 데모 -->
+        <div class="section">
+            <h2>💬 AI 학습 어시스턴트 (챗봇) 데모</h2>
+            <p class="desc">챗봇이 실제로 어떻게 동작하는지 보여주는 시뮬레이션입니다.</p>
+            <div class="card-list">
+                <a class="card" href="../samples/chatbot_success_demo.html">
+                    <div class="icon">✅</div>
+                    <div class="info">
+                        <div class="title">정상 응답 시나리오</div>
+                        <div class="sub">학과 정보 질문 → 정확한 답변 + 출처 표시</div>
+                    </div>
+                    <div class="arrow">→</div>
+                </a>
+                <a class="card" href="../samples/chatbot_failure_demo.html">
+                    <div class="icon">🛡️</div>
+                    <div class="info">
+                        <div class="title">환각 방어 (Fallback) 시나리오</div>
+                        <div class="sub">DB에 없는 정보 → 답변 거부 + 행정실 안내 / 민감 키워드 차단</div>
+                    </div>
+                    <div class="arrow">→</div>
+                </a>
+                <a class="card" href="../samples/chatbot_multilingual_demo.html">
+                    <div class="icon">🌐</div>
+                    <div class="info">
+                        <div class="title">다국어 응답 데모</div>
+                        <div class="sub">같은 질문을 한국어/중국어/영어로 — 동일 데이터, 자동 언어 전환</div>
+                    </div>
+                    <div class="arrow">→</div>
+                </a>
+                <a class="card" href="../samples/prompt_injection_demo.html">
+                    <div class="icon">🚨</div>
+                    <div class="info">
+                        <div class="title">프롬프트 인젝션 방어 데모</div>
+                        <div class="sub">"지시를 무시해" 등 해킹 시도 → 자동 탐지 및 차단</div>
+                    </div>
+                    <div class="arrow">→</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- 섹션 3: 포탈 데모 -->
+        <div class="section">
+            <h2>🏫 학과 소개 AI 포탈 데모</h2>
+            <p class="desc">AI가 학과 데이터를 자동으로 다국어 웹페이지로 변환한 결과물입니다.</p>
+            <div class="card-list">
+                <a class="card" href="../samples/department_index.html">
+                    <div class="icon">🏫</div>
+                    <div class="info">
+                        <div class="title">8개 학과 포탈 전체 목록</div>
+                        <div class="sub">2개 완성 + 6개 구축 예정 — 학과별 카드형 인덱스</div>
+                    </div>
+                    <div class="arrow">→</div>
+                </a>
+                <a class="card" href="../samples/portal_prototype.html">
+                    <div class="icon">💼</div>
+                    <div class="info">
+                        <div class="title">글로벌경영학과 포탈</div>
+                        <div class="sub">교육과정, 진로, 연락처 — 데이터 기반 정적 웹페이지</div>
+                    </div>
+                    <div class="arrow">→</div>
+                </a>
+                <a class="card" href="../samples/portal_prototype_mechanical.html">
+                    <div class="icon">🔧</div>
+                    <div class="info">
+                        <div class="title">기계자동차공학과 포탈</div>
+                        <div class="sub">실습실/연구실 소개 포함 — 공학 계열 포탈 예시</div>
+                    </div>
+                    <div class="arrow">→</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- 섹션 4: 데이터 파이프라인 -->
+        <div class="section">
+            <h2>📄 데이터 전처리 과정</h2>
+            <p class="desc">HWP 원본 문서가 AI가 읽을 수 있는 형태로 변환되는 과정입니다.</p>
+            <div class="card-list">
+                <a class="card" href="../samples/data_prep_reality.html">
+                    <div class="icon">🔄</div>
+                    <div class="info">
+                        <div class="title">HWP 전처리 Before/After</div>
+                        <div class="sub">자동 추출 시 표 깨짐 → LLM 정제 + 수작업 검수 결과 비교</div>
+                    </div>
+                    <div class="arrow">→</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- 섹션 5: 관리·운영 -->
+        <div class="section">
+            <h2>📊 관리·운영 도구</h2>
+            <p class="desc">운영 단계에서 관리자가 사용할 모니터링 및 검수 도구입니다.</p>
+            <div class="card-list">
+                <a class="card" href="../samples/admin_monitoring_demo.html">
+                    <div class="icon">📊</div>
+                    <div class="info">
+                        <div class="title">관리자 모니터링 대시보드 (목업)</div>
+                        <div class="sub">질문 통계, 차단 로그, 언어 분포, 최근 대화 이력</div>
+                    </div>
+                    <div class="arrow">→</div>
+                </a>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- 섹션 6: 기술 참고자료 -->
+        <div class="section">
+            <h2>📁 기술 참고자료 (부록)</h2>
+            <p class="desc">기술적 세부 사항이 궁금할 때 참조하는 자료입니다. 보고 시 필수가 아닙니다.</p>
+            <div class="card-list">
+                <a class="card" href="../implementation_plan_draft.md">
+                    <div class="icon">📝</div>
+                    <div class="info">
+                        <div class="title">구현 계획서 v3 (텍스트 파일 — 기술팀 전용)</div>
+                        <div class="sub">기술 스택, 2-Phase 전략, System Prompt, 비용 구조 상세</div>
+                    </div>
+                    <div class="arrow">→</div>
+                </a>
+                <a class="card" href="../samples/system_prompt_engineering.md">
+                    <div class="icon">⚙️</div>
+                    <div class="info">
+                        <div class="title">System Prompt 설계 명세 (텍스트 파일)</div>
+                        <div class="sub">챗봇의 행동 규칙, 보안 정책, 프롬프트 인젝션 방어 상세</div>
+                    </div>
+                    <div class="arrow">→</div>
+                </a>
+                <a class="card" href="../samples/qa_risk_test_set.md">
+                    <div class="icon">🧪</div>
+                    <div class="info">
+                        <div class="title">QA 리스크 테스트 세트 — 28문항 (텍스트 파일)</div>
+                        <div class="sub">민감 질문, 환각 유도, 인젝션 공격 등 28개 시나리오 테스트</div>
+                    </div>
+                    <div class="arrow">→</div>
+                </a>
+                <a class="card" href="../samples/admin_review_guideline.md">
+                    <div class="icon">📖</div>
+                    <div class="info">
+                        <div class="title">행정실 검수 가이드라인 (텍스트 파일)</div>
+                        <div class="sub">데이터 검수 절차, 승인 기준, 비상 연락처</div>
+                    </div>
+                    <div class="arrow">→</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- 섹션 7: 다이어그램 PNG -->
+        <div class="section">
+            <h2>🖼️ 흐름도 PNG (인쇄/첨부용)</h2>
+            <p class="desc">보고서에 이미지로 삽입하거나 인쇄할 수 있는 PNG 파일입니다.</p>
+            <div class="card-list">
+                <a class="card" href="../flowcharts/flow_01_rag_fallback_logic.png">
+                    <div class="icon">1️⃣</div>
+                    <div class="info">
+                        <div class="title">RAG 챗봇 환각 방어 로직</div>
+                        <div class="sub">flow_01_rag_fallback_logic.png (117KB)</div>
+                    </div>
+                    <div class="arrow">→</div>
+                </a>
+                <a class="card" href="../flowcharts/flow_02_hwp_data_pipeline.png">
+                    <div class="icon">2️⃣</div>
+                    <div class="info">
+                        <div class="title">HWP 데이터 파이프라인</div>
+                        <div class="sub">flow_02_hwp_data_pipeline.png (68KB)</div>
+                    </div>
+                    <div class="arrow">→</div>
+                </a>
+                <a class="card" href="../flowcharts/flow_03_zero_cost_portal.png">
+                    <div class="icon">3️⃣</div>
+                    <div class="info">
+                        <div class="title">포탈 정적 빌드 아키텍처</div>
+                        <div class="sub">flow_03_zero_cost_portal.png (43KB)</div>
+                    </div>
+                    <div class="arrow">→</div>
+                </a>
+                <a class="card" href="../flowcharts/overall_architecture.png">
+                    <div class="icon">🗺️</div>
+                    <div class="info">
+                        <div class="title">전체 시스템 아키텍처</div>
+                        <div class="sub">overall_architecture.png</div>
+                    </div>
+                    <div class="arrow">→</div>
+                </a>
+                <a class="card" href="../flowcharts/cost_flow.png">
+                    <div class="icon">💰</div>
+                    <div class="info">
+                        <div class="title">비용·리소스 흐름</div>
+                        <div class="sub">cost_flow.png</div>
+                    </div>
+                    <div class="arrow">→</div>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer">
+            신한대학교 국제대학 AI교수학습센터 · 아이데이션 자료 · 2026
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>AI 챗봇 환각(Hallucination) 방어 로직 데모</title>
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; background: #f8f9fb; color: #1e293b; padding: 40px; margin: 0; }
+        .container { max-width: 1200px; margin: 0 auto; display: flex; gap: 40px; }
+        .explanation { flex: 1; }
+        .explanation h1 { font-size: 24px; margin: 0 0 15px 0; color: #0f172a; border-bottom: 2px solid #e2e8f0; padding-bottom: 15px; }
+        .explanation p { color: #475569; line-height: 1.6; margin-bottom: 20px; }
+        .defense-list { list-style: none; padding: 0; margin: 0; }
+        .defense-list li { background: #fff; border-left: 4px solid #6366f1; padding: 15px; margin-bottom: 15px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .defense-list li strong { display: block; color: #4338ca; margin-bottom: 5px; }
+        
+        .chat-mockup { flex: 1; background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); display: flex; flex-direction: column; height: 600px; }
+        .chat-header { background: #1e293b; color: #fff; padding: 20px; font-weight: bold; text-align: center; }
+        .chat-body { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; background: #f8fafc; }
+        .msg { max-width: 80%; padding: 12px 16px; border-radius: 12px; font-size: 14px; line-height: 1.5; }
+        .msg.user { align-self: flex-end; background: #6366f1; color: #fff; border-bottom-right-radius: 4px; }
+        .msg.ai { align-self: flex-start; background: #fff; color: #334155; border: 1px solid #e2e8f0; border-bottom-left-radius: 4px; }
+        .msg.ai-guard { border: 2px solid #ef4444; background: #fef2f2; }
+        .badge { display: inline-block; background: #ef4444; color: #fff; font-size: 11px; padding: 2px 6px; border-radius: 4px; margin-bottom: 5px; font-weight: bold; }
+        .chat-footer { padding: 15px; border-top: 1px solid #e2e8f0; background: #fff; }
+        .chat-input { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; color: #94a3b8; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="explanation">
+            <h1>[예시] 챗봇 방어 로직 (Fallback) 시뮬레이션</h1>
+            <p>비전문가들이 흔히 하는 오해는 "AI가 모든 것을 대답할 수 있다"는 것입니다. 하지만 공식적인 학교 서비스에서는 <strong>"잘못된 대답을 하는 것보다, 차라리 대답을 회피하고 담당 부서를 안내하는 것"</strong>이 훨씬 중요합니다.</p>
+            <p>우측의 챗봇 시뮬레이션은 AI가 특정 상황에서 어떻게 방어적으로 행동하는지 보여줍니다.</p>
+            
+            <ul class="defense-list">
+                <li>
+                    <strong>방어 1: DB에 없는 정보 (환각 방어)</strong>
+                    AI가 지어내서 대답하는 것(Hallucination)을 막기 위해, 검색된 문서에 답이 없으면 즉시 대답을 중단합니다.
+                </li>
+                <li>
+                    <strong>방어 2: 민감 키워드 차단 (입학/장학/비자)</strong>
+                    유학생 비자나 장학금 등 금전/법적 문제가 얽힌 민감한 단어가 감지되면, AI의 판단을 배제하고 하드코딩된 공식 답변(부서 연락처)을 강제 출력합니다.
+                </li>
+                <li>
+                    <strong>방어 3: 타 대학 비교 금지</strong>
+                    경쟁 대학과의 노골적인 비교 질문에 대해서는 정책상 답변을 거부하도록 프롬프트가 설정되어 있습니다.
+                </li>
+            </ul>
+        </div>
+
+        <div class="chat-mockup">
+            <div class="chat-header">국제대학 AI 학습 어시스턴트</div>
+            <div class="chat-body">
+                <div class="msg ai">안녕하세요! 글로벌경영학과에 대해 무엇이든 물어보세요. (한국어/English/中文)</div>
+                
+                <div class="msg user">이번 학기 국제마케팅론 교수님 이메일 주소 알려줘.</div>
+                <div class="msg ai">
+                    <span class="badge">방어 1 작동</span><br>
+                    죄송합니다. 제공된 학과 데이터베이스에서 해당 교수님의 이메일 정보를 찾을 수 없습니다. 정확한 정보는 글로벌경영학과 학과사무실(031-000-0101)로 문의해 주시기 바랍니다.
+                </div>
+
+                <div class="msg user">제가 HSK 5급이 있는데 입학할 때 장학금 얼마나 받을 수 있나요?</div>
+                <div class="msg ai ai-guard">
+                    <span class="badge">방어 2 작동 (민감 키워드 감지)</span><br>
+                    <strong>[공식 안내]</strong><br>
+                    장학금 및 입학 규정은 개인의 상황과 연도에 따라 변동될 수 있으므로 AI가 직접 답변하지 않습니다. 유학생 장학금 관련 공식적이고 정확한 상담은 반드시 <strong>국제교류처(031-000-0900, inter@shinhan.ac.kr)</strong>를 통해 진행해 주시기 바랍니다.
+                </div>
+
+                <div class="msg user">한양대학교랑 비교하면 신한대가 더 나은 점이 뭐야?</div>
+                <div class="msg ai ai-guard">
+                    <span class="badge">방어 3 작동 (타 대학 비교 금지)</span><br>
+                    죄송합니다. 타 대학과의 비교 평가는 정책상 제공하지 않습니다. 글로벌경영학과의 교육과정 및 특장점에 대해서는 자세히 안내해 드릴 수 있습니다. 궁금한 점을 말씀해 주세요.
+                </div>
+            </div>
+            <div class="chat-footer">
+                <div class="chat-input">메시지를 입력하세요...</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>AI 챗봇 정상 응답 시나리오 데모</title>
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; background: #f8f9fb; color: #1e293b; padding: 40px; margin: 0; }
+        .container { max-width: 1200px; margin: 0 auto; display: flex; gap: 40px; }
+        .explanation { flex: 1; }
+        .explanation h1 { font-size: 24px; margin: 0 0 15px 0; color: #0f172a; border-bottom: 2px solid #e2e8f0; padding-bottom: 15px; }
+        .explanation p { color: #475569; line-height: 1.7; margin-bottom: 20px; }
+        .highlight-list { list-style: none; padding: 0; margin: 0; }
+        .highlight-list li { background: #fff; border-left: 4px solid #22c55e; padding: 15px; margin-bottom: 15px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .highlight-list li strong { display: block; color: #15803d; margin-bottom: 5px; }
+
+        .chat-mockup { flex: 1; background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); display: flex; flex-direction: column; height: 650px; }
+        .chat-header { background: #1e293b; color: #fff; padding: 20px; font-weight: bold; text-align: center; }
+        .chat-body { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; background: #f8fafc; }
+        .msg { max-width: 80%; padding: 12px 16px; border-radius: 12px; font-size: 14px; line-height: 1.6; }
+        .msg.user { align-self: flex-end; background: #6366f1; color: #fff; border-bottom-right-radius: 4px; }
+        .msg.ai { align-self: flex-start; background: #fff; color: #334155; border: 1px solid #e2e8f0; border-bottom-left-radius: 4px; }
+        .msg.ai-success { border: 2px solid #22c55e; background: #f0fdf4; }
+        .badge-ok { display: inline-block; background: #22c55e; color: #fff; font-size: 11px; padding: 2px 6px; border-radius: 4px; margin-bottom: 5px; font-weight: bold; }
+        .source-tag { display: inline-block; background: #dbeafe; color: #1e40af; font-size: 11px; padding: 3px 8px; border-radius: 4px; margin-top: 8px; }
+        .chat-footer { padding: 15px; border-top: 1px solid #e2e8f0; background: #fff; }
+        .chat-input { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; color: #94a3b8; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="explanation">
+            <h1>[예시] 챗봇 정상 응답 시나리오</h1>
+            <p>AI 학습 어시스턴트가 <strong>학과 데이터베이스에 존재하는 정보</strong>에 대해 질문을 받았을 때의 정상 동작 모습입니다.</p>
+            <p>핵심은 <strong>"지어내지 않고, 검증된 데이터만 답변한다"</strong>는 것입니다. 모든 응답에는 출처(원본 문서)가 명시되어 사후 검증이 가능합니다.</p>
+
+            <ul class="highlight-list">
+                <li>
+                    <strong>✅ 학과 데이터 기반 정확한 답변</strong>
+                    벡터 DB에서 유사도가 높은 문서를 검색한 후, 해당 문서 내용만으로 답변을 구성합니다. AI가 자체적으로 추론하거나 지어내지 않습니다.
+                </li>
+                <li>
+                    <strong>✅ 출처 표시 (Traceable)</strong>
+                    모든 답변에 "어떤 문서에서 이 정보를 가져왔는지" 출처를 명시합니다. 행정실이 나중에 정보 정확성을 확인할 수 있습니다.
+                </li>
+                <li>
+                    <strong>✅ 자연스러운 다국어 응답</strong>
+                    학생이 한국어로 질문하면 한국어로, 중국어로 질문하면 중국어로 답변합니다. 답변 내용 자체는 동일한 데이터에서 추출됩니다.
+                </li>
+            </ul>
+        </div>
+
+        <div class="chat-mockup">
+            <div class="chat-header">국제대학 AI 학습 어시스턴트</div>
+            <div class="chat-body">
+                <div class="msg ai">안녕하세요! 글로벌경영학과에 대해 무엇이든 물어보세요. (한국어/English/中文)</div>
+
+                <div class="msg user">글로벌경영학과에서 전공필수 과목이 뭐가 있어?</div>
+                <div class="msg ai ai-success">
+                    <span class="badge-ok">정상 응답</span><br>
+                    글로벌경영학과의 2026학년도 전공필수 과목은 다음과 같습니다:<br><br>
+                    • <strong>국제마케팅론</strong> (3학점) — 글로벌 시장 환경 분석 및 다국적 기업의 마케팅 전략 수립<br>
+                    • <strong>국제무역실무</strong> (3학점) — 수출입 통관, 신용장 결제, 무역 계약서 작성 등 실무 프로세스<br><br>
+                    ※ 전공선택 과목(회계원리, 경영전략 등)은 별도 문의해 주세요.<br>
+                    <span class="source-tag">📄 출처: 글로벌경영학과_2026_교육과정.md</span>
+                </div>
+
+                <div class="msg user">학과 사무실 연락처 알려줘</div>
+                <div class="msg ai ai-success">
+                    <span class="badge-ok">정상 응답</span><br>
+                    글로벌경영학과 학과사무실 연락처입니다:<br><br>
+                    📞 <strong>031-000-0101</strong><br>
+                    ✉️ <strong>gb@shinhan.ac.kr</strong><br><br>
+                    방문 상담을 원하시면 국제관 3층 301호로 오시면 됩니다.<br>
+                    <span class="source-tag">📄 출처: 글로벌경영학과_기본정보.md</span>
+                </div>
+
+                <div class="msg user">졸업 후 어떤 곳에 취업할 수 있어?</div>
+                <div class="msg ai ai-success">
+                    <span class="badge-ok">정상 응답</span><br>
+                    글로벌경영학과 졸업생의 주요 진로 분야는 다음과 같습니다:<br><br>
+                    • 다국적 기업 무역실무<br>
+                    • 국제 마케팅 및 브랜드 매니저<br>
+                    • 글로벌 금융기관 (은행, 증권사 등)<br><br>
+                    보다 구체적인 취업 통계나 선배 후기는 학과사무실 또는 취업지원센터에 문의해 주시기 바랍니다.<br>
+                    <span class="source-tag">📄 출처: 글로벌경영학과_기본정보.md</span>
+                </div>
+            </div>
+            <div class="chat-footer">
+                <div class="chat-input">메시지를 입력하세요...</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

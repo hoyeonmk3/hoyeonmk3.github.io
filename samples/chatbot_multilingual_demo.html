@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>AI 챗봇 다국어 응답 데모</title>
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; background: #f8f9fb; color: #1e293b; padding: 40px; margin: 0; }
+        .container { max-width: 1300px; margin: 0 auto; }
+        .header { text-align: center; margin-bottom: 40px; border-bottom: 2px solid #e2e8f0; padding-bottom: 20px; }
+        .header h1 { font-size: 24px; margin: 0 0 10px 0; color: #0f172a; }
+        .header p { margin: 0; color: #64748b; font-size: 15px; }
+        .demo-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+
+        .chat-mockup { background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); display: flex; flex-direction: column; height: 550px; }
+        .chat-header { color: #fff; padding: 16px; font-weight: bold; text-align: center; font-size: 15px; }
+        .chat-header.ko { background: #1e293b; }
+        .chat-header.zh { background: #dc2626; }
+        .chat-header.en { background: #1d4ed8; }
+        .lang-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 2px 10px; border-radius: 12px; font-size: 12px; margin-left: 8px; }
+        .chat-body { flex: 1; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; background: #f8fafc; }
+        .msg { max-width: 90%; padding: 10px 14px; border-radius: 12px; font-size: 13px; line-height: 1.6; }
+        .msg.user { align-self: flex-end; background: #6366f1; color: #fff; border-bottom-right-radius: 4px; }
+        .msg.ai { align-self: flex-start; background: #fff; color: #334155; border: 1px solid #e2e8f0; border-bottom-left-radius: 4px; }
+        .source-tag { display: inline-block; background: #dbeafe; color: #1e40af; font-size: 10px; padding: 2px 6px; border-radius: 4px; margin-top: 6px; }
+        .same-data-note { text-align: center; margin-top: 30px; padding: 20px; background: #eef2ff; border: 1px solid #c7d2fe; border-radius: 8px; }
+        .same-data-note strong { color: #4338ca; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>[예시] 다국어 자동 응답 — 같은 질문, 같은 데이터, 다른 언어</h1>
+            <p>유학생이 모국어로 질문하면 모국어로 답변합니다. 답변의 근거는 동일한 학과 데이터베이스입니다.</p>
+        </div>
+
+        <div class="demo-grid">
+            <!-- Korean -->
+            <div class="chat-mockup">
+                <div class="chat-header ko">🇰🇷 한국어 <span class="lang-badge">Korean</span></div>
+                <div class="chat-body">
+                    <div class="msg ai">안녕하세요! 글로벌경영학과에 대해 무엇이든 물어보세요.</div>
+                    <div class="msg user">전공필수 과목이 뭐야?</div>
+                    <div class="msg ai">
+                        글로벌경영학과의 전공필수 과목은 다음과 같습니다:<br><br>
+                        • <strong>국제마케팅론</strong> (3학점)<br>
+                        • <strong>국제무역실무</strong> (3학점)<br><br>
+                        자세한 사항은 학과사무실(031-000-0101)에 문의해 주세요.<br>
+                        <span class="source-tag">📄 글로벌경영학과_교육과정.md</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chinese -->
+            <div class="chat-mockup">
+                <div class="chat-header zh">🇨🇳 中文 <span class="lang-badge">Chinese</span></div>
+                <div class="chat-body">
+                    <div class="msg ai">你好！请随时询问有关全球经营学系的信息。</div>
+                    <div class="msg user">专业必修课有哪些？</div>
+                    <div class="msg ai">
+                        全球经营学系的专业必修课如下：<br><br>
+                        • <strong>国际市场营销论</strong>（3学分）<br>
+                        • <strong>国际贸易实务</strong>（3学分）<br><br>
+                        如需了解详情，请联系系办公室（031-000-0101）。<br>
+                        <span class="source-tag">📄 글로벌경영학과_교육과정.md</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- English -->
+            <div class="chat-mockup">
+                <div class="chat-header en">🇺🇸 English <span class="lang-badge">English</span></div>
+                <div class="chat-body">
+                    <div class="msg ai">Hello! Feel free to ask anything about the Global Business Department.</div>
+                    <div class="msg user">What are the required major courses?</div>
+                    <div class="msg ai">
+                        The required major courses for Global Business are:<br><br>
+                        • <strong>International Marketing</strong> (3 credits)<br>
+                        • <strong>International Trade Practice</strong> (3 credits)<br><br>
+                        For more details, please contact the department office at 031-000-0101.<br>
+                        <span class="source-tag">📄 글로벌경영학과_교육과정.md</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="same-data-note">
+            <strong>핵심 포인트:</strong> 세 가지 언어 모두 <strong>동일한 학과 데이터(글로벌경영학과_교육과정.md)</strong>에서 정보를 추출합니다.<br>
+            데이터를 한 번만 정리하면 3개 국어 서비스가 자동으로 가능합니다. 별도 번역 작업이 필요 없습니다.
+        </div>
+    </div>
+</body>
+</html>

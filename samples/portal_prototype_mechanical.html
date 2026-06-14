@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>학과 정보 포탈 프로토타입 - 기계자동차공학과</title>
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; background: #fafafa; color: #333; margin: 0; padding: 0; }
+        .mockup-banner { background: #fef3c7; border-bottom: 2px solid #f59e0b; padding: 10px 20px; text-align: center; font-size: 14px; color: #92400e; font-weight: 600; }
+        .header { background: #1a365d; color: #fff; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; }
+        .header h1 { margin: 0; font-size: 20px; }
+        .lang-selector select { padding: 5px; font-size: 14px; }
+        .container { max-width: 1000px; margin: 40px auto; background: #fff; border: 1px solid #ddd; padding: 40px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .section-title { font-size: 18px; border-bottom: 2px solid #1a365d; padding-bottom: 10px; margin-top: 0; margin-bottom: 20px; font-weight: bold; }
+
+        .data-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 40px; }
+        .data-card { border: 1px solid #eee; padding: 20px; background: #fdfdfd; }
+        .data-card h3 { margin: 0 0 10px 0; font-size: 16px; color: #555; }
+        .data-value { font-size: 24px; font-weight: bold; color: #1a365d; }
+        .data-note { font-size: 12px; color: #888; margin-top: 5px; }
+
+        .curriculum-table { width: 100%; border-collapse: collapse; margin-bottom: 40px; font-size: 14px; }
+        .curriculum-table th, .curriculum-table td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        .curriculum-table th { background: #f4f6f8; font-weight: bold; color: #333; }
+
+        .lab-section { margin-bottom: 40px; }
+        .lab-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .lab-card { border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; background: #f8fafc; }
+        .lab-card h4 { margin: 0 0 8px 0; color: #1a365d; font-size: 15px; }
+        .lab-card p { margin: 0; font-size: 13px; color: #64748b; line-height: 1.5; }
+
+        .ai-notice { background: #fff5f5; border-left: 4px solid #e53e3e; padding: 15px; font-size: 13px; color: #c53030; margin-top: 40px; font-weight: bold; }
+        .inline-warning { color: #e53e3e; font-size: 11px; display: block; margin-top: 4px; font-weight: bold; }
+
+        .chatbot-link { text-align: center; margin-top: 40px; padding: 30px; background: #edf2f7; border-radius: 4px; }
+        .chatbot-link p { margin: 0 0 15px 0; color: #4a5568; }
+        .chatbot-btn { display: inline-block; background: #1a365d; color: #fff; padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="mockup-banner">⚠️ [예시 목업] 본 페이지는 아이데이션 단계의 프로토타입이며, 실제 운영 서비스가 아닙니다.</div>
+
+    <div class="header">
+        <h1>신한대학교 국제대학 포탈</h1>
+        <div class="lang-selector">
+            <select disabled title="현재는 프로토타입으로 한국어만 제공됩니다.">
+                <option>한국어 (Korean)</option>
+                <option>English (준비중)</option>
+                <option>中文 (준비중)</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- 1. 기본 정보 -->
+        <h2 class="section-title">기계자동차공학과 (Mechanical & Automotive Engineering)</h2>
+        <div class="data-grid">
+            <div class="data-card">
+                <h3>소속 / 학위</h3>
+                <div class="data-value">국제대학 / 공학사</div>
+            </div>
+            <div class="data-card">
+                <h3>재학생 현황 (2025 기준)</h3>
+                <div class="data-value">220 명</div>
+                <div class="data-note">※ 본 수치는 예시 데이터입니다.</div>
+            </div>
+            <div class="data-card">
+                <h3>주요 진로</h3>
+                <div class="data-value" style="font-size: 16px;">자동차 제조사, 부품 기업, 로봇·자동화 설비, 품질관리(QC)</div>
+            </div>
+            <div class="data-card">
+                <h3>학과사무실 연락처</h3>
+                <div class="data-value" style="font-size: 16px;">031-000-0102 / mech@shinhan.ac.kr</div>
+            </div>
+        </div>
+
+        <!-- 2. 교육과정 표 -->
+        <h2 class="section-title">2026학년도 주요 교육과정</h2>
+        <table class="curriculum-table">
+            <thead>
+                <tr>
+                    <th>과목명</th>
+                    <th>이수구분</th>
+                    <th>학점</th>
+                    <th>설명 <span class="inline-warning">(※ AI 다국어 요약본 - 법적 효력 없음)</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>자동차공학개론</td>
+                    <td>전공필수</td>
+                    <td>3</td>
+                    <td>내연기관·전기차·하이브리드 파워트레인 기초 이론 및 차량 시스템 구조 이해.</td>
+                </tr>
+                <tr>
+                    <td>기계역학</td>
+                    <td>전공필수</td>
+                    <td>3</td>
+                    <td>정역학·동역학 기초, 힘과 운동의 관계 분석, 기계 시스템 거동 예측.</td>
+                </tr>
+                <tr>
+                    <td>CAD/CAM 설계</td>
+                    <td>전공선택</td>
+                    <td>3</td>
+                    <td>3D 모델링(SolidWorks/CATIA) 및 컴퓨터 기반 가공 프로세스 실습.</td>
+                </tr>
+                <tr>
+                    <td>열역학</td>
+                    <td>전공필수</td>
+                    <td>3</td>
+                    <td>열에너지 변환 원리, 엔진 열효율 분석, 냉각·공조 시스템 설계 기초.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 3. 실습실/연구실 소개 -->
+        <h2 class="section-title">주요 실습·연구 시설</h2>
+        <div class="lab-section">
+            <div class="lab-grid">
+                <div class="lab-card">
+                    <h4>🔧 자동차 정비 실습실</h4>
+                    <p>실제 차량을 분해·조립하며 엔진, 변속기, 서스펜션 등 핵심 부품의 구조와 작동 원리를 체험합니다.</p>
+                </div>
+                <div class="lab-card">
+                    <h4>🖥️ CAD/CAM 컴퓨터실</h4>
+                    <p>SolidWorks, CATIA 등 산업용 3D 설계 소프트웨어를 활용한 제품 설계 및 시뮬레이션 실습.</p>
+                </div>
+                <div class="lab-card">
+                    <h4>⚡ 전기차 연구실</h4>
+                    <p>배터리 관리 시스템(BMS), 전기 모터 제어, 충전 인프라 관련 연구 프로젝트 수행.</p>
+                </div>
+                <div class="lab-card">
+                    <h4>🤖 로봇·자동화 LAB</h4>
+                    <p>산업용 로봇 팔(6축), PLC 제어, 센서 연동 등 스마트 팩토리 기초 기술 실습.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 챗봇 유도 -->
+        <div class="chatbot-link">
+            <p>학과 정보에 대해 더 궁금한 점이 있으신가요?</p>
+            <a href="#" class="chatbot-btn">AI 학습 어시스턴트에게 질문하기</a>
+        </div>
+
+        <!-- 면책 조항 -->
+        <div class="ai-notice">
+            [법적 책임 제한 및 면책 고지] <br>
+            본 페이지의 다국어 번역 및 요약 설명은 AI에 의해 자동 생성되었으며, 정보의 정확성과 최신성을 보장하지 않습니다. AI 생성 내용에 기반한 의사결정으로 발생하는 불이익에 대해 신한대학교는 일체 책임을 지지 않습니다.<br>
+            ※ 입학, 장학금, 비자/체류, 등록금, 휴/복학, 학점 인정 등 중요 행정 규정은 반드시 국제교류처 또는 학과사무실을 통해 직접 교차 검증하시기 바랍니다.
+        </div>
+    </div>
+
+</body>
+</html>
